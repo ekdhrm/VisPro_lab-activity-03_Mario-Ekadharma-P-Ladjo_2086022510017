@@ -13,11 +13,36 @@
 // limitations under the License.
 
 import 'package:flutter/material.dart';
-
+import 'colors.dart';
 import 'home.dart';
 import 'login.dart';
 
-// TODO: Convert ShrineApp to stateful widget (104)
+// Create the custom theme function
+final ThemeData _kShrineTheme = _buildShrineTheme();
+
+ThemeData _buildShrineTheme() {
+  final ThemeData base = ThemeData.light();
+  return base.copyWith(
+    colorScheme: base.colorScheme.copyWith(
+      primary: kShrinePink100,
+      onPrimary: kShrineBrown900,
+      secondary: kShrineBrown900,
+      error: kShrineErrorRed,
+    ),
+    scaffoldBackgroundColor: kShrineBackgroundWhite,
+    textSelectionTheme: const TextSelectionThemeData(
+      selectionColor: kShrinePink100,
+    ),
+    inputDecorationTheme: const InputDecorationTheme(
+      border: OutlineInputBorder(),
+      focusedBorder: OutlineInputBorder(
+        borderSide: BorderSide(width: 2.0, color: kShrineBrown900),
+      ),
+      floatingLabelStyle: TextStyle(color: kShrineBrown900),
+    ),
+  );
+}
+
 class ShrineApp extends StatelessWidget {
   const ShrineApp({Key? key}) : super(key: key);
 
@@ -28,17 +53,9 @@ class ShrineApp extends StatelessWidget {
       initialRoute: '/login',
       routes: {
         '/login': (BuildContext context) => const LoginPage(),
-        // TODO: Change to a Backdrop with a HomePage frontLayer (104)
         '/': (BuildContext context) => const HomePage(),
-        // TODO: Make currentCategory field take _currentCategory (104)
-        // TODO: Pass _currentCategory for frontLayer (104)
-        // TODO: Change backLayer field value to CategoryMenuPage (104)
       },
-      // TODO: Customize the theme (103)
-      theme: ThemeData.light(useMaterial3: true),
+      theme: _kShrineTheme, // Apply the theme here!
     );
   }
 }
-
-// TODO: Build a Shrine Theme (103)
-// TODO: Build a Shrine Text Theme (103)
