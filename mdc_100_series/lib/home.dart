@@ -58,30 +58,11 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('SHRINE'),
-        leading: IconButton(
-          icon: const Icon(Icons.menu, semanticLabel: 'menu'),
-          onPressed: () {},
-        ),
-        actions: <Widget>[
-          IconButton(
-            icon: const Icon(Icons.search, semanticLabel: 'search'),
-            onPressed: () {},
-          ),
-          IconButton(
-            icon: const Icon(Icons.tune, semanticLabel: 'filter'),
-            onPressed: () {},
-          ),
-        ],
-      ),
-      body: GridView.count(
-        crossAxisCount: 2,
-        padding: const EdgeInsets.all(16.0),
-        childAspectRatio: 8.0 / 9.0,
-        children: _buildGridCards(context),
-      ),
+    return GridView.count(
+      crossAxisCount: 2,
+      padding: const EdgeInsets.all(16.0),
+      childAspectRatio: 8.0 / 9.0,
+      children: _buildGridCards(context),
     );
   }
 }

@@ -16,6 +16,9 @@ import 'package:flutter/material.dart';
 import 'colors.dart';
 import 'home.dart';
 import 'login.dart';
+import 'backdrop.dart';
+import 'model/product.dart';
+import 'supplemental/category_menu_page.dart';
 
 // Create the custom theme function
 final ThemeData _kShrineTheme = _buildShrineTheme();
@@ -53,7 +56,16 @@ class ShrineApp extends StatelessWidget {
       initialRoute: '/login',
       routes: {
         '/login': (BuildContext context) => const LoginPage(),
-        '/': (BuildContext context) => const HomePage(),
+        '/': (BuildContext context) => Backdrop(
+              currentCategory: Category.all, // Added this so our app compiles!
+              frontLayer: const HomePage(),
+              backLayer: CategoryMenuPage(
+                currentCategory: Category.all,
+                onCategoryTap: (Category _) {},
+              ),
+              frontTitle: const Text('SHRINE'),
+              backTitle: const Text('MENU'),
+            ),
       },
       theme: _kShrineTheme, // Apply the theme here!
     );
